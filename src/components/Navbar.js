@@ -1,30 +1,47 @@
 import React from 'react'
-import '../css/navbar.css'
+
 
 export default function Navbar() {
   return (
     <>
     
-    <nav className="navbar">
-      <div className="navbar-container">
-        <a href="/" className="navbar-logo">Logo</a>
-        <ul className="navbar-menu">
-          <li className="navbar-item">
-            <a href="/" className="navbar-link">Home</a>
-          </li>
-          <li className="navbar-item">
-            <a href="/about" className="navbar-link">About</a>
-          </li>
-          <li className="navbar-item">
-            <a href="/contact" className="navbar-link">Contact</a>
-          </li>
-        </ul>
-        <div className="navbar-auth">
-          <a href="/login" className="navbar-link">Login</a>
-          <a href="/signup" className="navbar-link">Signup</a>
-        </div>
-      </div>
-    </nav>
+
+
+   
+    <nav class="navbar navbar-expand-lg navbar-light " style={{"background-color":"#ece4e4;"}}>
+
+  <div class="container-fluid">
+
+
+    <a class="navbar-brand" href="/">Photo Sharing</a>
+
+
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+  
+    
+
+       
+   
+
+
+      <ul class="navbar-nav d-flex flex-row me-1">
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="signin">SignIn</a>
+        </li>
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="/signup">SignUp</a>
+        </li>
+      </ul>
+
+    </div>
+
+
+</nav>
+
+
     
     
     

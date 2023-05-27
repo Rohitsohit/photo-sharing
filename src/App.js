@@ -6,19 +6,19 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 const App = () => {
   return <>
 
-    <Navbar></Navbar>
+  
     
-  <SignUp></SignUp>
+  
   <Router>
   <Navbar/>
       {/* <Routes>
       <Route path="/" exact element={<Productview/> } />
       </Routes> */}
       <Routes>
-      <Route path="/signin" exact element={SignIn } />
+      <Route path="/signin" exact element={<SignIn/>} />
       </Routes>
       <Routes>
-      <Route path="/signup" exact element={SignUp } />
+      <Route path="/signup" exact element={<SignUp></SignUp>} />
       </Routes>
     
     
