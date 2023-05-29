@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { account } from '../appwrite/appwrite'
+import { account } from '../appwrite/appBackend'
 
 import { v4 as uuidv4 } from 'uuid';
 
