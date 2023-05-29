@@ -1,6 +1,36 @@
-import React from 'react'
 
-export default function login() {
+import React, { useState } from 'react'
+import { account } from '../appwrite/appwrite'
+export default function Login() {
+  
+  //use state to set user detals.
+  const [user,setUser] = useState({
+    email:"",
+    password:""
+  });
+  
+  //signIn function.
+
+  const  signInUser =async (e) =>{
+
+    e.preventDefault();
+
+    //creating a email session.
+    try {
+      await account.createEmailSession(
+        user.email,
+        user.password,
+      )
+      var userName = account.get(user.email);
+      console.log((await userName).name);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
   return (
     <section class="vh-100">
   <div class="container-fluid">
@@ -19,21 +49,33 @@ export default function login() {
             
 
             <div class="form-outline mb-4">
-              <input type="email" id="form2Example18" class="form-control form-control-lg" />
               <label class="form-label" for="form2Example18">Email address</label>
+              <input type="email" id="form2Example18" onChange={(e)=>{
+                setUser({
+                  ...user,
+                  email : e.target.value
+                })
+
+              }} class="form-control form-control-lg" />
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="form2Example28" class="form-control form-control-lg" />
               <label class="form-label" for="form2Example28">Password</label>
+              <input type="password" id="form2Example28" onChange={(e)=>{
+                setUser({
+                  ...user,
+                  password:e.target.value
+  
+                })
+                }} class="form-control form-control-lg" />
             </div>
 
             <div class="pt-1 mb-4">
-              <button class="btn btn-info btn-lg btn-block" type="button">Login</button>
+              <button class="btn btn-info btn-lg btn-block" onClick={signInUser} type="button">Login</button>
             </div>
 
             <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-            <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+            <p>Don't have an account? <a href="/signup" class="link-info">Register here</a></p>
 
           </form>
 

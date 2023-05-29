@@ -15,7 +15,7 @@ const App = () => {
       <Route path="/" exact element={<Productview/> } />
       </Routes> */}
       <Routes>
-      <Route path="https://cheery-torte-5cff90.netlify.app/signin" exact element={<SignIn/>} />
+      <Route path="/signin" exact element={<SignIn/>} />
       </Routes>
       <Routes>
       <Route path="/signup" exact element={<SignUp></SignUp>} />
