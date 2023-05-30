@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import { account } from '../appwrite/backend'
+import { account } from '../AppWrite/backend'
 export default function Login() {
   
   //use state to set user detals.
