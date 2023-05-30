@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Form from "./components/Form.js";
 const App = () => {
   return <>
 
@@ -11,10 +12,9 @@ const App = () => {
   
   <Router>
   <Navbar/>
-      {/* <Routes>
-      <Route path="/" exact element={<Productview/> } />
-      </Routes> */}
+   
       <Routes>
+      <Route path="/" exact element={<Form/>} />
       <Route path="/signin" exact element={<SignIn/>} />
       </Routes>
       <Routes>
