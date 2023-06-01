@@ -71,7 +71,7 @@ export default function Login() {
                 </div>
 
                 <div class="pt-1 mb-4">
-                  <button class="btn btn-info btn-lg btn-block" onClick={signInUser} type="button">Login</button>
+                  <button class="btn btn-info btn-lg btn-block"  onClick={signInUser} type="button">Login</button>
                 </div>
 
                 <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>

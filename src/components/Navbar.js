@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <>   
-    {/* <nav class="navbar navbar-expand-lg navbar-light " style={{"background-color":"#ece4e4;"}}>
+    <nav class="navbar navbar-expand-lg navbar-light " style={{"background-color":"#ece4e4;"}}>
 
   <div class="container-fluid">
 
@@ -39,7 +39,7 @@ export default function Navbar() {
       <i class="fas fa-bars"></i>
     </button>
 
-    <Profile/>
+    
    
       {userDetails?<Profile/>:
       
@@ -53,9 +53,9 @@ export default function Navbar() {
       </ul>
       }
     </div>
-</nav> */}
+</nav>
 
-<Test></Test>
+
     
     
     

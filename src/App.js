@@ -4,6 +4,7 @@ import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Form from "./components/Form.js";
+import AboutUs from "./components/AboutUs.js";
 const App = () => {
   return <>
 
@@ -20,7 +21,9 @@ const App = () => {
       <Routes>
       <Route path="/signup" exact element={<SignUp></SignUp>} />
       </Routes>
-    
+      <Routes>
+      <Route path="/aboutus" exact element={<AboutUs/>} />
+      </Routes>
     
   </Router>
 
