@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react'
 import { account } from '../server/backend.js'
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
-
+  const history = useNavigate();
   //use state to set user detals.
   const [user, setUser] = useState({
     email: "",
@@ -26,6 +27,7 @@ export default function Login() {
     } catch (error) {
       console.log(error);
     }
+    history("/");
   }
 
 
