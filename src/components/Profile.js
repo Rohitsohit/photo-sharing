@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { account } from '../server/backend';
-
+import { useNavigate } from 'react-router-dom';
 export default function Profile() {
+  const history = useNavigate();
   const [userDetails, setuserDetails] = useState();
 
   useEffect(() => {
@@ -15,18 +16,14 @@ export default function Profile() {
               console.log(error);
           }
       )
-    
   },[])
-
-
-    
 const logoutUser=async(e)=>{
-    e.preventDefault();
     try {
         await account.deleteSessions("current");
     } catch (error) {
         console.log(error);
     }
+    history("/signin");
 }
 
 

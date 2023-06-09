@@ -17,33 +17,28 @@ export default function Signup() {
   
   //signup function.
 
-  const signupUser =(e) =>{
-
+  const signupUser =async(e) =>{
     e.preventDefault();
-    
-    const promise = account.create(
+   try {
+    await account.create(
       uuidv4(),
       user.email,
       user.password,
       user.name,
     )
+    creatingEmailSession();
+   } catch (error) {
+    console.log(error);
+   }     
+  }
 
-    promise.then(
-
-      function(response){
-          console.log(response);
-          history("/");
-          
-        },
-        
-        function(error){
-          
-          console.log(error);
-      }
-
-    )
-
-    
+  const creatingEmailSession= async()=>{
+    try {
+      await account.createEmailSession(user.email,user.password);
+      history("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
   
   return (

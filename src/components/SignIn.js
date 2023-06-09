@@ -13,21 +13,18 @@ export default function Login() {
   //signIn function.
 
   const signInUser = async (e) => {
-
     e.preventDefault();
-
     //creating a email session.
     try {
       await account.createEmailSession(
         user.email,
         user.password,
       )
-      var userName = account.get(user.email);
-      console.log((await userName).name);
+      history("/");
     } catch (error) {
       console.log(error);
     }
-    history("/");
+   
   }
 
 

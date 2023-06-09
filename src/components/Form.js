@@ -1,6 +1,60 @@
-import React from 'react'
 
+import React, { useState } from 'react'
+import { databases } from '../server/backend.js'
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import FileBase from "react-file-base64";
 export default function Form() {
+
+const [dataDetails, setdataDetails] = useState({
+  title:"",
+  description :"",
+  tags : "",
+  // selectedImage :""
+});
+
+const handleSubmit = (e)=>{
+
+  e.preventDefault();
+  const promise = databases.createDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",uuidv4(),
+    dataDetails
+  );
+  promise.then(
+    function (response) {
+      console.log(response);
+    },
+    function (error) {
+      console.log(error);
+    }
+  )
+}
+const uploadfile=async(e)=>{
+
+  const file = e.target.files[0];
+  const imageToBase64  =  await convertBase64(file);
+  console.log(imageToBase64);
+  // setdataDetails({...dataDetails,selectedImage:imageToBase64})
+}
+const convertBase64 = (file) =>{
+  return new Promise((resolve,reject) =>{
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload=(()=>{
+      resolve(fileReader.result);
+    })
+
+    fileReader.onerror=((error)=>{
+      reject(error);
+    })
+  })
+}
+
+
+
+
+
+
   return (
     <section class="vh-100">
     <div class="container-fluid">
@@ -20,28 +74,45 @@ export default function Form() {
   
               <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example18">Title</label>
-                <input type="text"class="form-control form-control-lg" />
+                <input type="text"class="form-control form-control-lg" onChange={(e)=>{
+                  setdataDetails({
+                    ...dataDetails,
+                    title : e.target.value
+                })
+                }} />
               </div>
   
   
               <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example18">Message</label>
-                <input type="text"  class="form-control form-control-lg"  />
+                <input type="text"  class="form-control form-control-lg" onChange={(e)=>{
+                  setdataDetails({
+                    ...dataDetails,
+                    description : e.target.value
+                })
+                }}  />
               </div>
   
               <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example28">Tags</label>
-                <input type="text" class="form-control form-control-lg"/>
+                <input type="text" class="form-control form-control-lg" onChange={(e)=>{
+                  setdataDetails({
+                    ...dataDetails,
+                    tags : e.target.value
+                })
+                }}/>
               </div>
   
               <div class="form-outline mb-4">
               <label for="formFileLg" class="form-label">Upload here.</label>
-<input class="form-control form-control-lg" id="formFileLg" type="file" />
+ <input class="form-control form-control-lg" id="formFileLg" type="file" onChange={(e)=>{uploadfile(e)}}
+              /> 
+             
               </div>
   
               <div class="pt-1 mb-4">
                 
-                <button class="btn btn-info btn-lg btn-block" type="button" >Submit</button>
+                <button class="btn btn-info btn-lg btn-block" type="button" onClick={handleSubmit}>Submit</button>
               </div>
   
             </form>
