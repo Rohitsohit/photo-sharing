@@ -85,8 +85,12 @@ export default function ImageCard(props,user) {
           <div className="card__img--hover" style={{ backgroundImage: `url(${imageUrl})` }}></div>
         </a>
         <div className="card__info">
-          <span className="card__category"> Recipe</span>
-          <h3 className="card__title">Crisp Spanish tortilla Matzo brei</h3>
+          <span className="card__category">{props.post.title}</span>
+          <h3 className="card__title">{props.post.description}</h3>
+          <span className="card__by">
+           <a  className="card__author" title="author">{props.post.tags}</a>
+          </span>
+          <p> </p>
           <span className="card__by">
             by <a  className="card__author" title="author">Celeste Mills</a>
           </span>
