@@ -5,3 +5,19 @@
     width: 100%;
     
 }
+
+.textcolor{
+    font-weight: 600;
+    text-decoration: none;
+    color: #AD7D52;
+}
+
+.headingcolor{
+    font-weight: 500;
+    font-size: 200%;
+    text-decoration: none;
+    color: #AD7D52;
+}
+.uploadcolor{
+    color: #AD7D52;
+}

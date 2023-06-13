@@ -48,7 +48,7 @@ const uploadfile=async(e)=>{
   
           <div class="px-5 ms-xl-4">
             <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{"color": "#709085;"}}></i>
-            <span class="h1 fw-bold mb-0">Share Your Photo.</span>
+            <span class="h1 fw-bold mb-0" className="headingcolor" >Share Your Photo .</span>
           </div>
   
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
@@ -58,7 +58,7 @@ const uploadfile=async(e)=>{
               
   
               <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example18">Title</label>
+                <label class="form-label" className="textcolor" for="form2Example18">Title</label>
                 <input type="text"class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
@@ -69,7 +69,7 @@ const uploadfile=async(e)=>{
   
   
               <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example18">Message</label>
+                <label class="form-label" className="textcolor" for="form2Example18">Message</label>
                 <input type="text"  class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
@@ -79,7 +79,7 @@ const uploadfile=async(e)=>{
               </div>
   
               <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example28">Tags</label>
+                <label class="form-label"  className="textcolor" for="form2Example28">Tags</label>
                 <input type="text" class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
@@ -89,8 +89,8 @@ const uploadfile=async(e)=>{
               </div>
   
               <div class="form-outline mb-4">
-              <label for="formFileLg" class="form-label">Upload here.</label>
- <input class="form-control form-control-lg" id="formFileLg" type="file" onChange={uploadfile} /> 
+              <label for="formFileLg" class="form-label" className="textcolor">Upload here .</label>
+ <input class="form-control form-control-lg"  id="formFileLg" type="file" onChange={uploadfile} /> 
              
               </div>
   

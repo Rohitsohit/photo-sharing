@@ -37,8 +37,8 @@ export default function Login() {
           <div class="col-sm-6 text-black">
 
             <div class="px-5 ms-xl-4">
-              <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{ "color": "#709085;" }}></i>
-              <span class="h1 fw-bold mb-0">Sign In</span>
+
+              <span class="h1 fw-bold" className='headingcolor'>Sign In : </span>
             </div>
 
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
@@ -48,7 +48,7 @@ export default function Login() {
 
 
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="form2Example18">Email address</label>
+                  <label class="form-label" className='textcolor' for="form2Example18">Email address</label>
                   <input type="email" id="form2Example18" onChange={(e) => {
                     setUser({
                       ...user,
@@ -59,7 +59,7 @@ export default function Login() {
                 </div>
 
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="form2Example28">Password</label>
+                  <label class="form-label" className='textcolor' for="form2Example28">Password</label>
                   <input type="password" id="form2Example28" onChange={(e) => {
                     setUser({
                       ...user,
@@ -75,8 +75,8 @@ export default function Login() {
                   <button class="btn btn-info btn-lg btn-block"  onClick={signInUser} type="button">Login</button>
                 </div>
 
-                <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-                <p>Don't have an account? <a href="/signup" class="link-info">Register here</a></p>
+                <p class="small mb-5 pb-lg-2"><a class="text-muted" className='textcolor' href="#!">Forgot password?</a></p>
+                <p className='textcolor'>Don't have an account? <a href="/signup" className='textcolor' class="link-info">Register here</a></p>
 
               </form>
 
