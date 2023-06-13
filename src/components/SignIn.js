@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import { account } from '../server/backend.js'
 import { useNavigate } from 'react-router-dom';
+import '../css/signdesign.css'
+import Toast from './Toast.js';
 export default function Login() {
   const history = useNavigate();
   //use state to set user detals.
@@ -9,9 +11,9 @@ export default function Login() {
     email: "",
     password: ""
   });
+  const [error, setError] = useState();
 
   //signIn function.
-
   const signInUser = async (e) => {
     e.preventDefault();
     //creating a email session.
@@ -22,15 +24,13 @@ export default function Login() {
       )
       history("/");
     } catch (error) {
-      console.log(error);
+      setError(error);
+      
     }
    
   }
-
-
-
-
   return (
+    <div class="signdesign"> 
     <section class="vh-100">
       <div class="container-fluid">
         <div class="row">
@@ -66,7 +66,9 @@ export default function Login() {
                       password: e.target.value
 
                     })
+                    
                   }} class="form-control form-control-lg" />
+                  <Toast error={error}></Toast>
                 </div>
 
                 <div class="pt-1 mb-4">
@@ -85,5 +87,7 @@ export default function Login() {
         </div>
       </div>
     </section>
+
+    </div>
   )
 }

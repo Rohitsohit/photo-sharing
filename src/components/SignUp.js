@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { account } from '../server/backend.js'
-
+import '../css/signdesign.css'
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 
@@ -42,6 +42,7 @@ export default function Signup() {
   }
   
   return (
+    <div class="signdesign">
     <section class="vh-100">
   <div class="container-fluid">
     <div class="row">
@@ -108,7 +109,7 @@ export default function Signup() {
     </div>
   </div>
 </section>
-
+</div>
 
   )
 }

@@ -8,6 +8,7 @@ import AboutUs from "./components/AboutUs.js";
 import Test from "./components/Test.js";
 
 import Home from "./components/Home.js";
+import Form from "./components/Form.js";
 const App = () => {
   return <> 
   <Router>
@@ -22,6 +23,9 @@ const App = () => {
       </Routes>
       <Routes>
       <Route path="/aboutus" exact element={<AboutUs/>} />
+      </Routes>
+      <Routes>
+      <Route path="/post" exact element={<Form/>} />
       </Routes>
     
   </Router>

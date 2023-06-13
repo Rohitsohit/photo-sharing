@@ -1,27 +1,31 @@
 
 import React, { useState } from 'react'
 import { databases } from '../server/backend.js'
-import { v4 as uuidv4 } from 'uuid';
+import { account } from '../server/backend.js';
+import {ID} from "appwrite"
+import { storages } from '../server/backend.js';
 import { useNavigate } from 'react-router-dom';
-import FileBase from "react-file-base64";
+import '../css/signdesign.css'
 export default function Form() {
-
+  const history =useNavigate();
 const [dataDetails, setdataDetails] = useState({
   title:"",
   description :"",
   tags : "",
-  // selectedImage :""
+  selectedImage :"",
+  creator:""
 });
 
-const handleSubmit = (e)=>{
-
+const handleSubmit = async(e)=>{
   e.preventDefault();
-  const promise = databases.createDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",uuidv4(),
-    dataDetails
-  );
+  const data =  await account.get();
+  dataDetails.creator=data.email;
+  console.log(dataDetails);
+  const promise = databases.createDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",ID.unique(),dataDetails);
   promise.then(
     function (response) {
       console.log(response);
+        history('/');
     },
     function (error) {
       console.log(error);
@@ -29,33 +33,14 @@ const handleSubmit = (e)=>{
   )
 }
 const uploadfile=async(e)=>{
-
+  e.preventDefault();
   const file = e.target.files[0];
-  const imageToBase64  =  await convertBase64(file);
-  console.log(imageToBase64);
-  // setdataDetails({...dataDetails,selectedImage:imageToBase64})
+  const promise = await storages.createFile('648637dfc82c23415868', ID.unique(), file);
+  setdataDetails({...dataDetails,selectedImage:promise.$id})
 }
-const convertBase64 = (file) =>{
-  return new Promise((resolve,reject) =>{
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload=(()=>{
-      resolve(fileReader.result);
-    })
-
-    fileReader.onerror=((error)=>{
-      reject(error);
-    })
-  })
-}
-
-
-
-
-
 
   return (
+    <div className='signdesign' >
     <section class="vh-100">
     <div class="container-fluid">
       <div class="row">
@@ -77,7 +62,7 @@ const convertBase64 = (file) =>{
                 <input type="text"class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
-                    title : e.target.value
+                    title:e.target.value,
                 })
                 }} />
               </div>
@@ -88,7 +73,7 @@ const convertBase64 = (file) =>{
                 <input type="text"  class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
-                    description : e.target.value
+                    description:e.target.value
                 })
                 }}  />
               </div>
@@ -98,15 +83,14 @@ const convertBase64 = (file) =>{
                 <input type="text" class="form-control form-control-lg" onChange={(e)=>{
                   setdataDetails({
                     ...dataDetails,
-                    tags : e.target.value
+                    tags:e.target.value
                 })
                 }}/>
               </div>
   
               <div class="form-outline mb-4">
               <label for="formFileLg" class="form-label">Upload here.</label>
- <input class="form-control form-control-lg" id="formFileLg" type="file" onChange={(e)=>{uploadfile(e)}}
-              /> 
+ <input class="form-control form-control-lg" id="formFileLg" type="file" onChange={uploadfile} /> 
              
               </div>
   
@@ -124,5 +108,6 @@ const convertBase64 = (file) =>{
       </div>
     </div>
   </section>
+  </div>
   )
 }
