@@ -6,7 +6,7 @@ export default function Home() {
   
   //creating a empty array intial to solve the undefiend error 
   const [postData, setpostData] = useState([{}]);
-  const [isUser, setIsUser] = useState(false);
+  const [isUser, setIsUser] = useState();
 
   useEffect(() => {
     
@@ -21,7 +21,7 @@ export default function Home() {
     const getuser = account.get();
     getuser.then(
       function (response) {
-      setIsUser(true);
+      setIsUser(response);
     }, function (error) {
       console.log(error); // Failure
     });
@@ -29,7 +29,7 @@ export default function Home() {
   },[])
 
 
-  console.log(isUser)
+ 
   return (
    
    <div>
@@ -40,7 +40,7 @@ export default function Home() {
         
         postData.map(post =>(
           
-     <ImageCard post={post} user="isUser"></ImageCard>     
+     <ImageCard post={post} user={isUser}></ImageCard>     
      ))) 
      
     }
