@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { account } from '../server/backend';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import '../css/design.css'
 export default function Navbar() {
 
   const history = useNavigate();
@@ -11,7 +11,6 @@ export default function Navbar() {
 const fetchUser = async()=>{
   try {
     const data =  await account.get();
-  
     setuserDetails(data);
   } catch (error) {
     console.log(error)
@@ -31,14 +30,12 @@ const fetchUser = async()=>{
       } catch (error) {
           console.log(error);
       }
-      
-      
   }
   return (
     <>   
-    <nav class="navbar navbar-expand-lg navbar-light " style={{"background-color":"#ece4e4;"}}>
+    <nav class="navbar navbar-expand-lg navbar-light transparent-navbar" style={{"background-color":"#ece4e4;"}}>
   <div class="container-fluid">
-    <a class="navbar-brand" href="/post">Photo Sharing</a>
+    <a class="navbar-brand" className='navbarname' href="/">Photo Sharing</a>
     
     
    

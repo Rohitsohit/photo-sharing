@@ -13,13 +13,15 @@ const [dataDetails, setdataDetails] = useState({
   description :"",
   tags : "",
   selectedImage :"",
-  creator:""
+  creator:"",
+  createdBy:""
 });
 
 const handleSubmit = async(e)=>{
   e.preventDefault();
   const data =  await account.get();
   dataDetails.creator=data.email;
+  dataDetails.createdBy = data.name;
   console.log(dataDetails);
   const promise = databases.createDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",ID.unique(),dataDetails);
   promise.then(

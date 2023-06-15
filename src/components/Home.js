@@ -9,14 +9,14 @@ export default function Home() {
   const [isUser, setIsUser] = useState();
 
   useEffect(() => {
-    
+
     const getPosts = databases.listDocuments("64726e64bf00cc8601ea","647e461bd6a5c4d5166a");
     getPosts.then(
       function (response) {
       setpostData(response.documents)
     }, function (error) {
       console.log(error); // Failure
-    }); 
+    });
 
     const getuser = account.get();
     getuser.then(
@@ -39,7 +39,6 @@ export default function Home() {
       !postData.length ?(<p>loading...</p>):(
         
         postData.map(post =>(
-          
      <ImageCard post={post} user={isUser}></ImageCard>     
      ))) 
      

@@ -1,17 +1,17 @@
 import React from 'react'
 import "./card.css"
-import { account } from '../server/backend.js';
 import { databases } from '../server/backend.js'
 import { storages } from '../server/backend.js';
+import { useNavigate } from 'react-router-dom';
+import Comment from "./Comment.js";
+import { Link } from 'react-router-dom';
 export default function ImageCard(props) {
-  
+  const history = useNavigate();
   var imageUrl = 'https://cloud.appwrite.io/v1/storage/buckets/648637dfc82c23415868/files/64863be39175f4fe1ad0/view?project=646b9fc751da58eace96&mode=admin';
     if(props.post.selectedImage){
        const result = storages.getFilePreview('648637dfc82c23415868',props.post.selectedImage);
         imageUrl = result.href;
     }
-    
-    
     var signInUser = "";
     var createdBy = "";
     var likes =0;
@@ -30,17 +30,15 @@ export default function ImageCard(props) {
         e.preventDefault();
         
         if(signInUser){
-          console.log("user logged in")
           let updateDocument = { 
             likes:[]
             }
-    
             const postId=props.post.$id;
            
               // like condition.
               if(props.post.likes.includes(signInUser.email)){
-                console.log("inside condition to remove");
-    
+              
+                //to remove the like 
                 let elementToRemove = signInUser.email;
                 let index = props.post.likes.indexOf(elementToRemove);
                   if (index !== -1) {
@@ -50,28 +48,33 @@ export default function ImageCard(props) {
                   await databases.updateDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",postId,updateDocument);
               }
               else{
-                console.log("inside push");
-             
+               
+                // to add like in database.
                 props.post.likes.push(signInUser.email);
-                //console.log(props.post.likes)     
+                  
                 updateDocument.likes=props.post.likes;
-                //console.log(updateDocument);
+               
                 await databases.updateDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a",postId,updateDocument);
               }
-              // const updatedPost = await databases.getDocument("64726e64bf00cc8601ea","647e461bd6a5c4d5166a", postId);
-    
-              // console.log(updatedPost.likes);
-
-              // likes = updatedPost.likes.length; // get doucment 
+             
 
         }else{
-          console.log("please login")
+          console.log("please login");
         } 
       }
+
+      const handleComment=()=>{
+        
+        if(signInUser){
+          history(`/comment/${props.post.$id}/${props.user.name}`);
+        }
+        
+      }
+
   return (
     
 
-    <div className="col-md-4 my-3">
+    <div className="col-md-4 my-1">
     <section className="cards">
       <article className="card card--1">
         <div className="card__info-hover">
@@ -101,7 +104,14 @@ export default function ImageCard(props) {
           </span>
           <p> </p>
           <span className="card__by">
-            by <a  className="card__author" title="author">{createdBy}</a>
+            by   <a  className="card__author" title="author">{props.post.createdBy}</a>
+          </span>
+          <p> </p>
+          <span className="card__by">
+            
+            
+             <a className="card__comment"   onClick={handleComment}>comment</a>
+             
           </span>
         </div>
       </article>
